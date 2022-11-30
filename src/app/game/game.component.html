@@ -1,11 +1,15 @@
-<div class="outer-cont">
-    <h2 *ngIf="freshPage">Let's Play Tic-Tac-Toe</h2>
-    <h1 *ngIf="!winner && !isDraw && !freshPage">Current Player: {{player}}</h1>
-    <h2 *ngIf="winner">Player {{winner}} won!!</h2>
-    <h2 *ngIf="isDraw">Draw!!</h2>
-    <button (click)="newGame()">Start Game</button>
-
-    <main *ngIf="!winner && !isDraw">
+<!-- <div class="bg-image"></div> -->
+<div class="outer-cont" [ngStyle]="style">
+    <h2 *ngIf="freshPage" [ngStyle]="clr">Let's Play Tic-Tac-Toe</h2>
+    <h1 *ngIf="!winner && !isDraw && !freshPage" [ngStyle]="clr">Current Player: {{player}}</h1>
+    <h2 *ngIf="winner" [ngStyle]="clr">Player {{winner}} won!!</h2>
+    <h2 *ngIf="isDraw" [ngStyle]="clr">Draw!!</h2>
+    <button *ngIf="freshPage || isDraw || winner" (click)="newGame()">Start Game</button>
+    <div class="theme" *ngIf="freshPage || isDraw || winner">
+        <button class="theme-btn" (click)="theme(0)">Horror</button>
+        <button class="theme-btn" (click)="theme(1)">Candy</button>
+    </div>
+    <main *ngIf="!winner && !isDraw && !freshPage">
         <app-board *ngFor="let val of squares; let i=index" [value]="val"
         (click)="makeMove(i)"></app-board>
     </main>

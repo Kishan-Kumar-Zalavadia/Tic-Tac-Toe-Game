@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Themes } from '../themes';
+import { ThemeServiceService } from '../theme-service.service';
 
 @Component({
   selector: 'app-game',
@@ -13,10 +15,13 @@ export class GameComponent implements OnInit {
   counter = 0;
   isDraw = '';
   freshPage=true;
+  
+  themes = new Themes();
 
-  constructor() { }
+  constructor(private _themeService: ThemeServiceService) {
+  }
+  ngOnInit(): void { 
 
-  ngOnInit(): void {
   }
 
   newGame(){
@@ -59,5 +64,27 @@ export class GameComponent implements OnInit {
     }
     return null;
   }
+
+
+  style={}
+  clr={}
+  theme(num:number){
+    this._themeService.setIndex(num);
+    this.style={
+      // 'background': this.themes.theme[num][0],
+      // 'color': this.themes.theme[num][1]
+      'background-image': this.themes.theme[num][1],
+      'background-repeat': 'no-repeat',
+      'background-size': 'cover',
+    }
+    this.clr={
+      'color': this.themes.theme[num][0],
+      'background-color': this.themes.theme[num][2]
+    }
+  }
+  
+  
+
+
 
 }
