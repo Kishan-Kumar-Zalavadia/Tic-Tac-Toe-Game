@@ -6,6 +6,7 @@
     <h2 *ngIf="isDraw" [ngStyle]="clr">Draw!!</h2>
     <button *ngIf="freshPage || isDraw || winner" (click)="newGame()">Start Game</button>
     <div class="theme" *ngIf="freshPage || isDraw || winner">
+        <button class="theme-btn" (click)="theme(-1)">Default</button>
         <button class="theme-btn" (click)="theme(0)">Horror</button>
         <button class="theme-btn" (click)="theme(1)">Candy</button>
     </div>

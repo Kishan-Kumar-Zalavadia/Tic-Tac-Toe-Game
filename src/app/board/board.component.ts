@@ -20,6 +20,12 @@ export class BoardComponent implements OnInit {
   ngOnInit(): void {
     this.index=this._themeService.getIndex()
     console.log(this.index)
+    if(this.index==-1){
+      this.boardColor={
+        'background-color': '#2EE59D'
+      }
+      return;
+    }
     if(this.index>=0)
     this.boardColor={
       'background-color': this.themes.theme[this.index][0]

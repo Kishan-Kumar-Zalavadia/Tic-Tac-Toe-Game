@@ -70,6 +70,12 @@ export class GameComponent implements OnInit {
   clr={}
   theme(num:number){
     this._themeService.setIndex(num);
+    if(num==-1){
+      console.log("Default Theme")
+      this.style={}
+      this.clr={}
+      return;
+    }
     this.style={
       // 'background': this.themes.theme[num][0],
       // 'color': this.themes.theme[num][1]
